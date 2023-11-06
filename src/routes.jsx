@@ -3,7 +3,7 @@ import Creator from "./pages/Creator";
 import Creators from "./pages/Creators";
 import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
-import Project from "./pages/Project";
+import Project from "./Components/Project";
 import Projects from "./pages/Projects";
 
 const routes = [

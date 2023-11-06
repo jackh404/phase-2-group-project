@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import Project from "./Project"
+import Project from "../Components/Project"
 import { NavLink } from "react-router-dom";
 
 
 function Projects({props}){
-
+// add projects that are olooking for pianist or XY and all that
 
     const [projects,setProjects] = useState([])
     //fetch the data here?
@@ -15,7 +15,7 @@ function Projects({props}){
         // .catch(error => console.error(error))
       }, []);
 
-      const projectCards = projects.map(project=>{
+      const project = projects.map(project=>{
         return <Project key = {project.id} project={project}/>
       })
       
@@ -23,7 +23,7 @@ function Projects({props}){
     return <>
     <div>
         <header>List of projecs go here</header>
-        {projectCards}
+        {project}
         <nav>
         <NavLink
         to="/"
