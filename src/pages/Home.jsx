@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import '../index.css'
+import { NavLink } from "react-router-dom";
 
 function Home() {
   const [count, setCount] = useState(0)
@@ -9,6 +10,7 @@ function Home() {
   return (
     <>
       <div>
+      
         <a href="https://vitejs.dev" target="_blank">
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
@@ -29,6 +31,13 @@ function Home() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+      <NavLink
+        to="/projects"
+        /* add styling to Navlink */
+        className="nav-link"
+      >
+        List of Projects
+      </NavLink>
     </>
   )
 }
