@@ -6,11 +6,16 @@ import {
 } from "react-router-dom"
 import routes from './routes.jsx'
 import './index.css'
+import { UserProvider } from './context/user.jsx'
+import NavBar from './Components/NavBar.jsx'
 
 const router = createBrowserRouter(routes)
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <NavBar />
+      <RouterProvider router={router} />
+    </UserProvider>
   </React.StrictMode>,
 )

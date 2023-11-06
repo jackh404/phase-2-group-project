@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Home from "./pages/Home";
 import Project from "./Components/Project";
 import Projects from "./pages/Projects";
+import Login from "./pages/Login";
 
 const routes = [
     {
@@ -35,6 +36,11 @@ const routes = [
     {
         path:"project/:id",
         element: <Project />,
+        errorElement: <ErrorPage />
+    },
+    {
+        path:"login",
+        element: <Login />,
         errorElement: <ErrorPage />
     }
 ]
