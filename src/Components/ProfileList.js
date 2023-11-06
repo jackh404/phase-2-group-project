@@ -1,32 +1,5 @@
 import React, {useEffect, useState} from 'react';
 
-const profiles = [
-  {
-    id :"",
-    name : "",
-    skills : [""],
-    projects: [""],
-    bio: ""
-    picture: '',
-
-  },
-  {
-    id :"",
-    name : "",
-    skills : [""],
-    projects: [""],
-    bio: ""
-    picture: '',
-
-  },
-    id :"",
-    name : "",
-    skills : [""],
-    projects: [""],
-    bio: ""
-    picture: '',
-
-];
 
 const ProfileList = () => {
     const [profiles, setProfiles] = useState([]);
