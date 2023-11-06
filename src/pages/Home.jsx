@@ -1,10 +1,9 @@
-//https://ccserver-obi1.onrender.com
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
-// new change
-function App() {
+import '../index.css'
+
+function Home() {
   const [count, setCount] = useState(0)
 
   return (
@@ -34,4 +33,4 @@ function App() {
   )
 }
 
-export default App
+export default Home
