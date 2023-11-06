@@ -1,2 +1,5 @@
-// thinking we can have all the nav links here so when we want to go somewhere we can have a slide out menu with all the navlinks on it. 
-// would be three bars left/right that when clicked pop out to a menu that has: "projects, creators, home page" 
+import { NavLink } from "react-router-dom";
+
+function NavBar () {
+    return <div></div>
+}
