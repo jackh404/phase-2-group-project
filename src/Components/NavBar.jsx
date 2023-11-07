@@ -1,9 +1,7 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../context/user";
 
-function NavBar () {
-    const user = useContext(UserContext)
+function NavBar ({user}) {
     if(user)
         return (
             <nav>
