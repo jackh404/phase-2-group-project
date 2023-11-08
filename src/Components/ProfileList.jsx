@@ -28,7 +28,8 @@ const ProfileList = () => {
             <div key={profile.id}>
               <h2>{profile.name}</h2>
               <p>{profile.bio}</p>
-              {/*display more profile information here */}
+              <p>{profile.skills}</p>
+              <p>{profile.projects}</p>
             </div>
           ))}
         </div>
