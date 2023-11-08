@@ -28,7 +28,7 @@ const ProfileList = () => {
       ) : (
         <div>
           {profiles.map((profile) => (
-            <div key={profile.id}>
+            <div className = "projectCard" key={profile.id}>
               <h2>{profile.name}</h2>
               <img src={icon} alt={"profile picture"}/>
               <p>{profile.bio}</p>
@@ -43,7 +43,3 @@ const ProfileList = () => {
 };
 
 export default ProfileList;
-
-  
-
-
