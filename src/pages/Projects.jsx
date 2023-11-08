@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Project from "../Components/Project"
 import { NavLink } from "react-router-dom";
 import Search from "../Components/Search";
+import ProjectFilter from "../Components/ProjectFilter";
 
 
 function Projects({props}){
@@ -11,14 +12,24 @@ function Projects({props}){
   // states
     const [projects,setProjects] = useState([])
     const[input,setInput] = useState("")
-  // fetch the data here
+    const[selection,setSelection] = useState("All")
+  //   const [skills,setSkills]=useState([])
+  // // fetch the data here
+  
+  
+  // useEffect(() =>{
+  //     fetch(`https://ccserver-obi1.onrender.com/skills`)
+  //     .then(res => res.json())
+  //     .then(data => setSkills(data))
+  // // .catch(error => console.error(error))
+  //   }, []);
     useEffect(() =>{
         fetch(`https://ccserver-obi1.onrender.com/projects`)
         .then(res => res.json())
         .then(data => setProjects(data))
-        // .catch(error => console.error(error))
+  // .catch(error => console.error(error))
       }, []);
-  // input handler handles user inputs with state
+  // text filter handler
       function inputHandler(e){
         setInput(e.target.value)
       }
@@ -28,10 +39,14 @@ function Projects({props}){
           return project.name.toLowerCase().includes(input.toLowerCase())
         })
       }
+  // select menu filter
+      function selectHandler(){
+      }
+      let filteredSelect = filteredProject
 
   // mapping projects to the project list
       const project = filteredProject.map(project=>{
-        return <Project  id = "projectsDiv" key = {project.id} project={project}/>
+        return <Project  id = "projectsDiv" key = {project.id} project={project} />
       })
       
       
@@ -40,6 +55,7 @@ function Projects({props}){
     <div>
         <h1>List of projecs</h1>
         <Search inputHandler = {inputHandler} input={input}/>
+        <ProjectFilter/>
         
         <div id="project container div">
             {project}
