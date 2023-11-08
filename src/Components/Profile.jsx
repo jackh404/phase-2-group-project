@@ -8,3 +8,5 @@ const Profile = ({ name, picture, bio }) => {
       </div>
     );
   };
+
+  export default Profile
