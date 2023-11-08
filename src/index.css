@@ -23,11 +23,11 @@ a:hover {
   color: #535bf2;
 }
 
-#projectCard { 
+.projectCard { 
   background-color: #300808;
     max-width: min-content;
     padding: 12px;
-    scale: 75%;
+    scale: 95%;
     border-radius: 20px;
     border: solid 1px #300808;
     
@@ -39,7 +39,7 @@ a:hover {
   100%{rotate: 1deg;}
 }
 
-#projectCard:hover{
+.projectCard:hover{
   animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function:ease-out;
