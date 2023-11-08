@@ -8,6 +8,7 @@ import ProfileList from '../Components/ProfileList';
 function Home() {
   const [user] = useOutletContext()
 
+  
   return (
     <>
       <div>
