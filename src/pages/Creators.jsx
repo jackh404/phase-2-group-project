@@ -1,5 +1,5 @@
 import React from "react"
-import ProfileList from "../Components/ProfileList";
+import ProfileList from "./ProfileList";
 
 function Creators({props}){
     return <></>
