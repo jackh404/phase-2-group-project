@@ -3,6 +3,7 @@ import reactLogo from '../assets/react.svg'
 import viteLogo from '/vite.svg'
 import '../index.css'
 import { NavLink, useOutletContext } from "react-router-dom";
+import ProfileList from '../Components/ProfileList';
 
 function Home() {
   const [user] = useOutletContext()
@@ -19,6 +20,7 @@ function Home() {
       >
         List of Projects
       </NavLink>
+      <ProfileList />
     </>
   )
 }
