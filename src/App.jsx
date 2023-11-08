@@ -14,9 +14,9 @@ function App(){
             <header>
                 <NavBar user={user}/>
             </header>
-            <div id="container">
+            <main>
                 <Outlet context={[user,setUser]}/>
-            </div>
+            </main>
             <footer>
                 <p>©AllForge 2023</p>
             </footer>
