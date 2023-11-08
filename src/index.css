@@ -91,13 +91,7 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
-/*******************************************************************************
 
-
-Everything above came from Vite and can be deleted, everything below came from us 
-
-
-**********************************************************************************/
 nav{
   margin-bottom: 50px;
 }
