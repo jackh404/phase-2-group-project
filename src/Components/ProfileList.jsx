@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import icon from '../assets/img/icon.png';
 
 const ProfileList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -6,7 +7,8 @@ const ProfileList = () => {
 
   useEffect(() => {
     // Fetch data from your JSON server
-    fetch('https://ccserver-obi1.onrender.com/creators')
+     const dbserver = 'https://ccserver-obi1.onrender.com/';
+    fetch(`${dbserver}creators`)
       .then((response) => response.json())
       .then((data) => {
         setProfiles(data);
@@ -27,6 +29,7 @@ const ProfileList = () => {
           {profiles.map((profile) => (
             <div key={profile.id}>
               <h2>{profile.name}</h2>
+              <img src={icon} alt={"profile picture"}/>
               <p>{profile.bio}</p>
               <p>{profile.skills}</p>
               <p>{profile.projects}</p>
