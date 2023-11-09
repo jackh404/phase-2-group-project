@@ -11,7 +11,6 @@ const ProfileList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Fetch data from your JSON server
      const dbserver = 'https://ccserver-obi1.onrender.com/';
     fetch(`${dbserver}creators`)
       .then((response) => response.json())
