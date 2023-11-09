@@ -8,7 +8,7 @@ import NewProjectForm from "../Components/NewProjectForm";
 
 function Projects({props}){
   // add projects that are looking for pianist or XY and all that
-
+  
 
   // states
     const [projects,setProjects] = useState([])

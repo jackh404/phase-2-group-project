@@ -10,12 +10,21 @@ function NewProjectForm(){
         description: "",
         skills: [],
         image: "",
-        creators: [user]
+        creators: [user? user.id : null]
     })
-    const [name,setName] = useState("")
+    
+    
     
     function onSubmit(e){
         e.preventDefault()
+        fetch("https://ccserver-obi1.onrender.com/projects", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-type": "application/json"
+            }
+});
+              
         
     }
     function handleChange(e){
