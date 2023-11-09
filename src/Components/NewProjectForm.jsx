@@ -5,12 +5,13 @@ function NewProjectForm(){
     const [user,setUser,creators,projects,skills] = useOutletContext()
     const [skillSearch, setSkillSearch] = useState('')
     const [creatorSearch, setCreatorSearch] = useState('')
+    const [skillSelected, setSkillSelected] = useState('full stack development')
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         skills: [],
         image: "",
-        creators: [user? user.id : null]
+        creators: [user? user.id : null],
     })
     
     
@@ -34,13 +35,22 @@ function NewProjectForm(){
         e.preventDefault()
         const newCont = creators.find(cont => cont.id === creatorSearch)
         if(newCont){
-            setFormData({...formData, creators: [...formData.creators, newCont]})
-            setCreatorSearch('')
+            if(!formData.creators.includes(newCont)){
+                setFormData({...formData, creators: [...formData.creators, newCont]})
+                setCreatorSearch('')
+            }
         }
         else{
             alert("Creator not found!")
         }
     }
+    function handleNewSkill(e){
+        e.preventDefault()
+        if(!formData.skills.includes(skillSelected)){
+            setFormData({...formData, skills: [...formData.skills, skillSelected]})
+        }
+    }
+
     let displayCreators = "Please sign in..."
     if(formData.creators[0]){
         displayCreators = formData.creators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
@@ -101,9 +111,12 @@ function NewProjectForm(){
                 name="skillSearch" 
                 onChange={e => setSkillSearch(e.target.value)} 
                 value={skillSearch} />
-                <select>
+                <select
+                name="skillSelect"
+                value={skillSelected}
+                onChange={e=>setSkillSelected(e.target.value)}>
                 {skillOptions}
-                </select>
+                </select><button onClick={handleNewSkill}>add</button>
             </label>
             <br></br>
             <button type="submit">submit</button>
