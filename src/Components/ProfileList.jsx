@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import profile.img from 'https://ccserver-obi1.onrender.com/assets/img/';
+import icon from '../assets/img/icon.png';
+import jackIcon from '../assets/img/jack-icon.png';
+import shalIcon from '../assets/img/shal-icon.png';
 
-  const ProfileList = () => {
+
+
+
+const ProfileList = () => {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Fetch data from your JSON server
-    const dbserver = 'https://ccserver-obi1.onrender.com/';
+     const dbserver = 'https://ccserver-obi1.onrender.com/';
     fetch(`${dbserver}creators`)
       .then((response) => response.json())
       .then((data) => {
@@ -27,12 +32,18 @@ import profile.img from 'https://ccserver-obi1.onrender.com/assets/img/';
       ) : (
         <div>
           {profiles.map((profile) => (
-            <div className="projectCard" key={profile.id}>
+            <div className = "projectCard" key={profile.id}>
               <h2>{profile.name}</h2>
-              <img src={profile.img} alt={`${profile.name}'s profile picture`} />
+              <span>{  (profile.id ==="jack") ?
+                  <img src={jackIcon} alt={"Jack's profile picture"}/>
+                : ( (profile.id === "shal") ?
+                  <img src={shalIcon} alt={"Shal's profile picture"}/>
+                :
+                  <img src={icon} alt={"profile picture"}/>)
+              }</span>
               <p>{profile.bio}</p>
-              <p>Skills: {profile.skills.join(', ')}</p>
-              <p>Projects: {profile.projects.join(', ')}</p>
+              <p>{profile.skills}</p>
+              <p>{profile.projects}</p>
             </div>
           ))}
         </div>
@@ -42,4 +53,3 @@ import profile.img from 'https://ccserver-obi1.onrender.com/assets/img/';
 };
 
 export default ProfileList;
-

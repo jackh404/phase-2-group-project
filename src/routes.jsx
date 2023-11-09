@@ -7,6 +7,7 @@ import Login from "./pages/Login";
 import App from "./App";
 import ProfileList from "./Components/ProfileList";
 import Dashboard from "./pages/Dashboard";
+// import Profile from "./Components/Profile";
 
 const routes = [
     {
@@ -42,7 +43,14 @@ const routes = [
             {
                 path: "/dashboard",
                 element: <Dashboard />
+            },
+            {
+                // path: "/profile/:id",
+                // element: <Profile />
             }
+
+
+
         ]
     }
 ]
