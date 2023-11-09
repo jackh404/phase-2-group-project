@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewProjectForm({skills}){
+function NewProjectForm(){
+    const [user,setUser,creators,projects,skills] = useOutletContext()
     const [skillSearch, setSkillSearch] = useState('')
-    const [user] = useOutletContext()
+    const [creatorSearch, setCreatorSearch] = useState('')
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -22,8 +23,18 @@ function NewProjectForm({skills}){
     }
     function handleNewCont(e){
         e.preventDefault()
-        console.log(formData.creators)
-        
+        const newCont = creators.find(cont => cont.id === creatorSearch)
+        if(newCont){
+            setFormData({...formData, creators: [...formData.creators, newCont]})
+            setCreatorSearch('')
+        }
+        else{
+            alert("Creator not found!")
+        }
+    }
+    let displayCreators = "Please sign in..."
+    if(formData.creators[0]){
+        displayCreators = formData.creators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
     }
     
     const filteredSkills = skills.filter(skill => skill.includes(skillSearch.toLowerCase()))
@@ -44,15 +55,19 @@ function NewProjectForm({skills}){
             </label>
             <br></br>
             <label>
-                Contributers:
+                Contributers: 
                 <input
-                name = "Contributers"
-                placeholder="People working on it..." 
-                onChange={handleChange} 
-                value={formData.Contributers}></input>
+                name = "creatorSearch"
+                placeholder="Enter a username..." 
+                onChange={e => setCreatorSearch(e.target.value)} 
+                value={creatorSearch}></input>
                 <button onClick={handleNewCont}>add</button>
             </label>
-            <br></br>
+            <br/>
+                <div>
+                    {displayCreators}
+                </div>
+            <br/>
             <label>
                 Description:
                 <input 
@@ -73,7 +88,10 @@ function NewProjectForm({skills}){
             <br></br>
             <label>
                 Skills-Required
-                <input name="skillSearch" onChange={e => setSkillSearch(e.target.value)} value={skillSearch} />
+                <input 
+                name="skillSearch" 
+                onChange={e => setSkillSearch(e.target.value)} 
+                value={skillSearch} />
                 <select>
                 {skillOptions}
                 </select>
