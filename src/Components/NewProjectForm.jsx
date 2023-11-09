@@ -24,10 +24,9 @@ function NewProjectForm(){
     }
     function handleNewCont(e){
         e.preventDefault()
-        const newCont = creators.find(cont => cont.id === creatorSearch)
-        if(newCont){
-            if(!formData.creators.includes(newCont)){
-                setFormData({...formData, creators: [...formData.creators, newCont]})
+        if(creators.find((cont) => cont.id === creatorSearch)){
+            if(!formData.creators.find((cont) => cont === creatorSearch)){
+                setFormData({...formData, creators: [...formData.creators, creatorSearch]})
                 setCreatorSearch('')
             }
         }
@@ -41,10 +40,10 @@ function NewProjectForm(){
             setFormData({...formData, skills: [...formData.skills, skillSelected]})
         }
     }
-
     let displayCreators = "Please sign in..."
     if(formData.creators[0]){
-        displayCreators = formData.creators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
+        const projCreators = creators.filter(cont => formData.creators.includes(cont.id))
+        displayCreators = projCreators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
     }
     
     const filteredSkills = skills.filter(skill => skill.includes(skillSearch.toLowerCase()))
