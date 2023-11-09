@@ -159,3 +159,19 @@ button:hover {
   cursor: pointer;
   transition: border-color 0.25s;
 }
+
+.delete{
+  background-color: rgb(112, 4, 4);
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 25px;
+  font-weight: bold;
+  font-size:medium;
+}
+.delete:hover{
+  background-color: rgb(219, 0, 0);
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}

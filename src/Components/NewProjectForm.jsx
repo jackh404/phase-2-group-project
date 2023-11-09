@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm(){
+    //bring in context data
     const [user,setUser,creators,projects,skills] = useOutletContext()
+
+    //form states
     const [skillSearch, setSkillSearch] = useState('')
     const [creatorSearch, setCreatorSearch] = useState('')
-    const [skillSelected, setSkillSelected] = useState('full stack development')
     const [formData, setFormData] = useState({
         name: "",
         description: "",
@@ -13,9 +15,13 @@ function NewProjectForm(){
         image: "",
         creators: [user? user.id : null],
     })
-    
-    
-    
+
+    //get actual DOM element because state is slow af and onChange doesn't always work
+    const skillSelect = document.getElementById('skillSelect')
+
+    /* * * * * * * * * *
+     * Event Handlers  *
+     * * * * * * * * * */
     function onSubmit(e){
         e.preventDefault()
         fetch("https://ccserver-obi1.onrender.com/projects", {
@@ -24,13 +30,13 @@ function NewProjectForm(){
             headers: {
                 "Content-type": "application/json"
             }
-});
-              
-        
+        });
     }
+    
     function handleChange(e){
         setFormData({...formData, [e.target.name]: e.target.value})
     }
+
     function handleNewCont(e){
         e.preventDefault()
         if(creators.find((cont) => cont.id === creatorSearch)){
@@ -43,20 +49,34 @@ function NewProjectForm(){
             alert("Creator not found!")
         }
     }
+
     function handleNewSkill(e){
         e.preventDefault()
-        if(!formData.skills.includes(skillSelected)){
-            setFormData({...formData, skills: [...formData.skills, skillSelected]})
+        if(!formData.skills.includes(skillSelect.value)){
+            setFormData({...formData, skills: [...formData.skills, skillSelect.value]})
         }
     }
+
+    function handleDelete(e){
+        const key = e.target.parentNode.className
+        const value = e.target.parentNode.id
+        console.log(key, value)
+        setFormData({...formData, [key]:formData[key].filter(str=> str!== value)})
+    }
+
+    /* * * * * * * * * *
+     * form feedback   *
+     * * * * * * * * * */
     let displayCreators = "Please sign in..."
     if(formData.creators[0]){
         const projCreators = creators.filter(cont => formData.creators.includes(cont.id))
-        displayCreators = projCreators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
+        displayCreators = projCreators.map(creator => <div key ={creator.id} className="creators" ><h5 className="creators" id={creator.id}><span className="delete" onClick={handleDelete}>X</span>&emsp;{creator.name}</h5></div>)
     }
     
     const filteredSkills = skills.filter(skill => skill.includes(skillSearch.toLowerCase()))
     const skillOptions = filteredSkills.map(skill => <option key={skill} value={skill}>{skill}</option>)
+    const displaySkills = formData.skills.map(skill => <div key={skill} id={skill} className="skills"><span className="delete" onClick={handleDelete}>X</span>&emsp;{skill}</div>)
+
     return(
     <>
     <div>
@@ -112,11 +132,11 @@ function NewProjectForm(){
                 value={skillSearch} />
                 <select
                 name="skillSelect"
-                value={skillSelected}
-                onChange={e=>setSkillSelected(e.target.value)}>
+                id="skillSelect">
                 {skillOptions}
                 </select><button onClick={handleNewSkill}>add</button>
             </label>
+            {displaySkills}
             <br></br>
             <button type="submit">submit</button>
 
