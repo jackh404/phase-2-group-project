@@ -7,16 +7,17 @@ import { useState } from "react";
 
 
 function App(){
-   
+    
+   //patch reminder matthew sdandr
     const [user, setUser] = useState(null)
     return (
         <>
             <header>
                 <NavBar user={user}/>
             </header>
-            <div id="container">
+            <main>
                 <Outlet context={[user,setUser]}/>
-            </div>
+            </main>
             <footer>
                 <p>©AllForge 2023</p>
             </footer>
