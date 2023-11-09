@@ -22,7 +22,7 @@ function NewProjectForm({skills}){
     }
     function handleNewCont(e){
         e.preventDefault()
-        formData
+        console.log(formData.creators)
         
     }
     
@@ -49,7 +49,7 @@ function NewProjectForm({skills}){
                 name = "Contributers"
                 placeholder="People working on it..." 
                 onChange={handleChange} 
-                value={formData.name}></input>
+                value={formData.Contributers}></input>
                 <button onClick={handleNewCont}>add</button>
             </label>
             <br></br>
@@ -68,7 +68,7 @@ function NewProjectForm({skills}){
                 name="image"
                 placeholder="image Url..."
                 onChange={handleChange} 
-                value={formData.name} ></input>
+                value={formData.image} ></input>
             </label>
             <br></br>
             <label>
