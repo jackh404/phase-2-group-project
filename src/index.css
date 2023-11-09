@@ -28,6 +28,9 @@ body{
 }
 main{
   flex-grow:1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 footer{
   background-color: black;
@@ -38,10 +41,15 @@ footer{
   background-image: url('./src/assets/img/DwarfForge-transformed.jpeg');
   background-size: cover;
   min-height: 100%;
+  flex-grow:1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
   
 }
 #homePage>div{
   background-color: #1a1a1aca;
+  flex-grow:1;
 }
 
 a {

@@ -1,20 +1,31 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewProjectForm({skills}){
+function NewProjectForm(){
+    const [user,setUser,creators,projects,skills] = useOutletContext()
     const [skillSearch, setSkillSearch] = useState('')
-    const [user] = useOutletContext()
+    const [creatorSearch, setCreatorSearch] = useState('')
+    const [skillSelected, setSkillSelected] = useState('full stack development')
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         skills: [],
         image: "",
-        creators: [user]
+        creators: [user? user.id : null],
     })
-    const [name,setName] = useState("")
+    
+    
     
     function onSubmit(e){
         e.preventDefault()
+        fetch("https://ccserver-obi1.onrender.com/projects", {
+            method: "POST",
+            body: JSON.stringify(formData),
+            headers: {
+                "Content-type": "application/json"
+            }
+});
+              
         
     }
     function handleChange(e){
@@ -22,8 +33,26 @@ function NewProjectForm({skills}){
     }
     function handleNewCont(e){
         e.preventDefault()
-        formData
-        
+        if(creators.find((cont) => cont.id === creatorSearch)){
+            if(!formData.creators.find((cont) => cont === creatorSearch)){
+                setFormData({...formData, creators: [...formData.creators, creatorSearch]})
+                setCreatorSearch('')
+            }
+        }
+        else{
+            alert("Creator not found!")
+        }
+    }
+    function handleNewSkill(e){
+        e.preventDefault()
+        if(!formData.skills.includes(skillSelected)){
+            setFormData({...formData, skills: [...formData.skills, skillSelected]})
+        }
+    }
+    let displayCreators = "Please sign in..."
+    if(formData.creators[0]){
+        const projCreators = creators.filter(cont => formData.creators.includes(cont.id))
+        displayCreators = projCreators.map((creator,index) => <div key ={index} ><h5>{creator.name}</h5></div>)
     }
     
     const filteredSkills = skills.filter(skill => skill.includes(skillSearch.toLowerCase()))
@@ -44,15 +73,19 @@ function NewProjectForm({skills}){
             </label>
             <br></br>
             <label>
-                Contributers:
+                Contributers: 
                 <input
-                name = "Contributers"
-                placeholder="People working on it..." 
-                onChange={handleChange} 
-                value={formData.name}></input>
+                name = "creatorSearch"
+                placeholder="Enter a username..." 
+                onChange={e => setCreatorSearch(e.target.value)} 
+                value={creatorSearch}></input>
                 <button onClick={handleNewCont}>add</button>
             </label>
-            <br></br>
+            <br/>
+                <div>
+                    {displayCreators}
+                </div>
+            <br/>
             <label>
                 Description:
                 <input 
@@ -68,15 +101,21 @@ function NewProjectForm({skills}){
                 name="image"
                 placeholder="image Url..."
                 onChange={handleChange} 
-                value={formData.name} ></input>
+                value={formData.image} ></input>
             </label>
             <br></br>
             <label>
                 Skills-Required
-                <input name="skillSearch" onChange={e => setSkillSearch(e.target.value)} value={skillSearch} />
-                <select>
+                <input 
+                name="skillSearch" 
+                onChange={e => setSkillSearch(e.target.value)} 
+                value={skillSearch} />
+                <select
+                name="skillSelect"
+                value={skillSelected}
+                onChange={e=>setSkillSelected(e.target.value)}>
                 {skillOptions}
-                </select>
+                </select><button onClick={handleNewSkill}>add</button>
             </label>
             <br></br>
             <button type="submit">submit</button>
