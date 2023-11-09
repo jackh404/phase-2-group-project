@@ -19,7 +19,7 @@ function App(){
                 <Outlet context={[user,setUser]}/>
             </main>
             <footer>
-                <p>©AllForge 2023</p>
+                <p><i className="fa-brands fa-creative-commons"></i>  AllForge 2023</p>
             </footer>
         </>
     )
