@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import App from "./App";
 import ProfileList from "./Components/ProfileList";
+import Dashboard from "./pages/Dashboard";
 
 const routes = [
     {
@@ -35,8 +36,12 @@ const routes = [
                 element: <Project />,
             },
             {
-                path:"login",
+                path:"/login",
                 element: <Login />,
+            },
+            {
+                path: "/dashboard",
+                element: <Dashboard />
             }
         ]
     }
