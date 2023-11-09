@@ -4,23 +4,12 @@ import { Link, NavLink, useOutletContext } from "react-router-dom";
 import Project from '../Components/Project';
 
 function Home() {
-  const [featuredProject,setFeatured] = useState({name:'Loading...',description:'Loading...'})
-  const [skills,setSkills] = useState([])
-  const getFeature = async () =>{
-    const resp = await fetch('https://ccserver-obi1.onrender.com/projects')
-    const projects = await resp.json()
-    console.log(projects)
-    const featIndex = Math.floor(Math.random()*projects.length)
-    console.log(featIndex)
-    setFeatured(projects[featIndex])
-    const skillsResp = await fetch('https://ccserver-obi1.onrender.com/skills')
-    const data = await skillsResp.json()
-    setSkills(data)
+  let featuredProject = {name:'Loading...',description:'Loading...'}
+  const [user,setUser,creators,projects,skills] = useOutletContext()
+  if(projects.length > 0){
+    featuredProject = projects[Math.floor(Math.random() * projects.length)]
   }
-  useEffect(()=>{
-    getFeature()
-  },[])
-  const [user] = useOutletContext()
+  console.log(projects)
   let message
   if(!user)
     message = <h3>If you are an existing user, please <Link to="/login">Log In</Link>. Otherwise, feel free to check out our featured projects below or our <Link to="/about">About page</Link>.</h3>
