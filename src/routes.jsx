@@ -32,7 +32,7 @@ const routes = [
                 element: <Projects />,
             },
             {
-                path:"project/:id",
+                path:"project/:id/",
                 element: <Project />,
             },
             {
