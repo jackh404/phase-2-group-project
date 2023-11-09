@@ -1,54 +1,55 @@
-
+import { useState } from "react";
+import { v4 as uuid } from "uuid";
 
 function NewProjectForm({skills}){
+    const [name,setName] = useState("")
+    // const [people,setPeople]=useState("")
+    // const [description,setDescription] =useState("")
+    // const [imgSource,setImgSource] = useState("")
+    function onSubmit(e){
+        e.preventDefault()
+        
+    }
+    function handleName(e){
+        setName(e.target.value)
+        // console.log(name)
+    }
+    // function handleDescription(e){
+    //     setDescription(e.target.value)
+    // }
+    // function handlePeople(e){
+    //     setPeople(e.target.value)
 
-    // function skillsList(){
-    //         skills.map(skill=> {
-    //             return <option>{skills.index}</option>
-    //         })
     // }
 
     return(
-
     <>
     <div>
-        <form>
+        <form onSubmit={onSubmit}>
             <label>
                 ProjectName:  
-                <input placeholder=" Project Name here..."></input>
+                <input placeholder=" Project Name here..." onChange={handleName} ></input>
             </label>
             <br></br>
             <label>
                 Contributers:
-                <input placeholder="People working on it..."></input>
+                <input placeholder="People working on it..." ></input>
             </label>
             <br></br>
             <label>
                 Description:
-                <input placeholder="Description of project..."></input>
+                <input placeholder="Description of project..." ></input>
             </label>
             <br></br>
             <label>
                 Project image:
-                <input placeholder="image Url..."></input>
+                <input  placeholder="image Url..." ></input>
             </label>
             <br></br>
             <label>
                 Skills-Required
                 <select>
-                    <option>{skills[0]}</option>
-                    <option>{skills[1]}</option>
-                    <option>{skills[2]}</option>
-                    <option>{skills[3]}</option>
-                    <option>{skills[4]}</option>
-                    <option>{skills[5]}</option>
-                    <option>{skills[6]}</option>
-                    <option>{skills[7]}</option>
-                    <option>{skills[8]}</option>
-                    <option>{skills[9]}</option>
-                    <option>{skills[10]}</option>
-                    <option>{skills[11]}</option>
-                    <option>{skills[12]}</option>
+                {skills.map((skill)=> {return <option key = {skill} value={skill}>{skill}</option>})}
                 </select>
             </label>
             <br></br>
