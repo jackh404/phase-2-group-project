@@ -5,10 +5,8 @@ import JSConfetti from 'js-confetti'
 
 function Project({project,skills}){
   //const audio = new Audio("./audio.mp3");
-  const {name, id, description, creators,skillsRequired} = project
-  const [a,b,c] = creators
+  const {name, description, creators,skillsRequired} = project
   const [liked,setLiked]=useState(false)
-  const [d,e,f] = skillsRequired
   
   
   // loony wizard
@@ -46,7 +44,7 @@ function Project({project,skills}){
           <div className = "projectCard">
             <h2>{name}</h2>
             <img src="https://imgs.search.brave.com/HK18d27GqHDPABVlQ3-7Xm0qRZ6Y2BU-_9tOZ5pWBr8/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvNjgy/NzAzMTI2L3Bob3Rv/L3Rvb2xzLWluLXRo/ZS1mb3JnZS5qcGc_/cz02MTJ4NjEyJnc9/MCZrPTIwJmM9UFp3/aVA4aFBhcnI5ZnVx/c1V0djdmT2YxNkVE/eVgwT2x2eGNpSU9m/NC1qbz0" alt="" />
-            <h3>contributors: {creators?creators.join(' ,'):"Loading..."}</h3>
+            <h3>contributors: {creators?creators.join(', '):"Loading..."}</h3>
             <p>description: {description}</p>
             <h3>skills-needed: </h3>
             <h5>{skills[d]}, {skills[e]}, {skills[f]}</h5>
