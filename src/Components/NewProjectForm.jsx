@@ -1,55 +1,81 @@
 import { useState } from "react";
-import { v4 as uuid } from "uuid";
+import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm({skills}){
+    const [skillSearch, setSkillSearch] = useState('')
+    const [user] = useOutletContext()
+    const [formData, setFormData] = useState({
+        name: "",
+        description: "",
+        skills: [],
+        image: "",
+        creators: [user]
+    })
     const [name,setName] = useState("")
-    // const [people,setPeople]=useState("")
-    // const [description,setDescription] =useState("")
-    // const [imgSource,setImgSource] = useState("")
+    
     function onSubmit(e){
         e.preventDefault()
         
     }
-    function handleName(e){
-        setName(e.target.value)
-        // console.log(name)
+    function handleChange(e){
+        setFormData({...formData, [e.target.name]: e.target.value})
     }
-    // function handleDescription(e){
-    //     setDescription(e.target.value)
-    // }
-    // function handlePeople(e){
-    //     setPeople(e.target.value)
-
-    // }
-
+    function handleNewCont(e){
+        e.preventDefault()
+        formData
+        
+    }
+    
+    const filteredSkills = skills.filter(skill => skill.includes(skillSearch.toLowerCase()))
+    const skillOptions = filteredSkills.map(skill => <option key={skill} value={skill}>{skill}</option>)
     return(
     <>
     <div>
         <form onSubmit={onSubmit}>
             <label>
                 ProjectName:  
-                <input placeholder=" Project Name here..." onChange={handleName} ></input>
+                <input 
+                id="name" 
+                name="name" 
+                placeholder=" Project Name here..." 
+                onChange={handleChange} 
+                value={formData.name}
+                required></input>
             </label>
             <br></br>
             <label>
                 Contributers:
-                <input placeholder="People working on it..." ></input>
+                <input
+                name = "Contributers"
+                placeholder="People working on it..." 
+                onChange={handleChange} 
+                value={formData.name}></input>
+                <button onClick={handleNewCont}>add</button>
             </label>
             <br></br>
             <label>
                 Description:
-                <input placeholder="Description of project..." ></input>
+                <input 
+                placeholder="Description of project..." 
+                name="description"
+                onChange={handleChange} 
+                value={formData.description}></input>
             </label>
             <br></br>
             <label>
                 Project image:
-                <input  placeholder="image Url..." ></input>
+                <input  
+                name="image"
+                placeholder="image Url..."
+                onChange={handleChange} 
+                value={formData.name} ></input>
             </label>
             <br></br>
             <label>
                 Skills-Required
+                <input name="skillSearch" onChange={e => setSkillSearch(e.target.value)} value={skillSearch} />
                 <select>
-                {skills.map((skill)=> {return <option key = {skill} value={skill}>{skill}</option>})}
+                {skillOptions}
                 </select>
             </label>
             <br></br>

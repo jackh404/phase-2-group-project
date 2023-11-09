@@ -6,6 +6,7 @@ function NavBar ({user}) {
         return (
             <nav>
                 <NavLink to="/" className="navLink">Home</NavLink>
+                <NavLink to="/dashboard" className="navLink">Dashboard</NavLink>
                 <NavLink to="/projects" className="navLink">Projects</NavLink>
                 <NavLink to="/creators" className="navLink">Creators</NavLink>
                 <NavLink to="/about" className="navLink">About</NavLink>
