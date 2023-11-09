@@ -1,8 +1,6 @@
-import { useEffect, useState } from 'react';
 import '../index.css'
 import { Link, NavLink, useOutletContext } from "react-router-dom";
-import ProfileList from '../Components/ProfileList';
-
+import Project from '../Components/Project';
 function Home() {
   let featuredProject = {name:'Loading...',description:'Loading...'}
   const [user,setUser,creators,projects,skills] = useOutletContext()
