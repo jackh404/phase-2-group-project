@@ -7,6 +7,7 @@ function Project({project,skills}){
   //const audio = new Audio("./audio.mp3");
   const {name, description, creators,skillsRequired} = project
   const [liked,setLiked]=useState(false)
+  const [a,b,c]= skillsRequired
   
   
   // loony wizard
@@ -33,7 +34,7 @@ function Project({project,skills}){
     
   }
 
-  
+    console.log(skillsRequired)
     //console.log(skills)
     // console.log(project)
     // console.log(a,b,c)
@@ -47,7 +48,7 @@ function Project({project,skills}){
             <h3>contributors: {creators?creators.join(', '):"Loading..."}</h3>
             <p>description: {description}</p>
             <h3>skills-needed: </h3>
-            <h5>{skills[d]}, {skills[e]}, {skills[f]}</h5>
+            <h5>{skills[a]}, {skills[b]}, {skills[c]}</h5>
             
             <br></br>
             <button onClick = {(e)=>{likeClick(e)}} className={liked? "clicked":""}  id = "projectLikes">❤️</button>
