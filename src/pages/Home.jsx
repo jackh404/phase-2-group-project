@@ -5,6 +5,7 @@ import Project from '../Components/Project';
 
 function Home() {
   const [featuredProject,setFeatured] = useState({name:'Loading...',description:'Loading...'})
+  const [skills,setSkills] = useState([])
   const getFeature = async () =>{
     const resp = await fetch('https://ccserver-obi1.onrender.com/projects')
     const projects = await resp.json()
@@ -12,6 +13,9 @@ function Home() {
     const featIndex = Math.floor(Math.random()*projects.length)
     console.log(featIndex)
     setFeatured(projects[featIndex])
+    const skillsResp = await fetch('https://ccserver-obi1.onrender.com/skills')
+    const data = await skillsResp.json()
+    setSkills(data)
   }
   useEffect(()=>{
     getFeature()
@@ -28,7 +32,7 @@ function Home() {
         <h1>Welcome {user?`back, ${user.name}`:'to the AllForge!'}</h1>
         {message}
         <hr />
-        <Project project ={featuredProject} />
+        <Project project ={featuredProject} skills={skills}/>
       </div>
     </div>
   )
