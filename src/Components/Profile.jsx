@@ -7,6 +7,7 @@ const Profile = ({ name, picture, bio }) => {
         <p>{bio}</p>
       </div>
     );
+    <div 
   };
 
   export default Profile
