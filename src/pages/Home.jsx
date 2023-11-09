@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import '../index.css'
-import { NavLink, useOutletContext } from "react-router-dom";
+import { Link, NavLink, useOutletContext } from "react-router-dom";
 import ProfileList from '../Components/ProfileList';
 
 function Home() {
