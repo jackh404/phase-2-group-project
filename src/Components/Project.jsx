@@ -7,7 +7,6 @@ function Project({project,skills}){
   //const audio = new Audio("./audio.mp3");
   const {name, description, creators,skillsRequired} = project
   const [liked,setLiked]=useState(false)
-  const [a,b,c]= skillsRequired
 
   // skillsRequired.map((index)=>{return skills[index]})
   
