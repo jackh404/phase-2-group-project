@@ -11,7 +11,7 @@ function Project({project,skills}){
   // skillsRequired.map((index)=>{return skills[index]})
   
   
-  // loony wizard
+  //loony wizard
   const jsConfetti = new JSConfetti()
   function fireConfetti() {
     jsConfetti.addConfetti({
