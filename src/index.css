@@ -65,8 +65,8 @@ a:hover {
 
 @keyframes jump {
   0% {rotate: 0deg;}
-  20%{rotate: -10deg;}
-  100%{rotate: 10deg;}
+  20%{rotate: -1deg;}
+  100%{rotate: 1deg;}
 }
 
 .projectCard:hover{
@@ -98,10 +98,12 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  /* scale: 133%; */
 }
 button.clicked{
-  background-color: #ffffff;
-  border: 2px solid rgb(196, 0, 0);
+  border-radius: 8px;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid rgb(0, 0, 0);
   animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function:ease-out;

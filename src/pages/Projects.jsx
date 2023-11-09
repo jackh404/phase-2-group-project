@@ -3,6 +3,7 @@ import Project from "../Components/Project"
 import { NavLink } from "react-router-dom";
 import Search from "../Components/Search";
 import ProjectFilter from "../Components/ProjectFilter";
+import NewProjectForm from "../Components/NewProjectForm";
 
 
 function Projects({props}){
@@ -13,16 +14,16 @@ function Projects({props}){
     const [projects,setProjects] = useState([])
     const[input,setInput] = useState("")
     const[selection,setSelection] = useState("All")
-  //   const [skills,setSkills]=useState([])
-  // // fetch the data here
+    const [skills,setSkills]=useState([])
+  // fetch the data here
   
   
-  // useEffect(() =>{
-  //     fetch(`https://ccserver-obi1.onrender.com/skills`)
-  //     .then(res => res.json())
-  //     .then(data => setSkills(data))
-  // // .catch(error => console.error(error))
-  //   }, []);
+  useEffect(() =>{
+      fetch(`https://ccserver-obi1.onrender.com/skills`)
+      .then(res => res.json())
+      .then(data => setSkills(data))
+  // .catch(error => console.error(error))
+    }, []);
     useEffect(() =>{
         fetch(`https://ccserver-obi1.onrender.com/projects`)
         .then(res => res.json())
@@ -46,7 +47,7 @@ function Projects({props}){
 
   // mapping projects to the project list
       const project = filteredProject.map(project=>{
-        return <Project  id = "projectsDiv" key = {project.id} project={project} />
+        return <Project  id = "projectsDiv" key = {project.id} project={project} skills = {skills} />
       })
       
       
@@ -56,6 +57,7 @@ function Projects({props}){
         <h1>List of projecs</h1>
         <Search inputHandler = {inputHandler} input={input}/>
         <ProjectFilter/>
+        <NewProjectForm skills={skills}/>
         
         <div id="project container div">
             {project}
