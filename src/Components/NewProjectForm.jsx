@@ -2,19 +2,21 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm({ setShowForm }) {
+  const emptyForm = {
+    name: "",
+    description: "",
+    skills: [],
+    image: "",
+    creators: [user ? user.id : null],
+  };
+
   //bring in context data
   const { user, creators, skills } = useOutletContext();
 
   //form states
   const [skillSearch, setSkillSearch] = useState("");
   const [creatorSearch, setCreatorSearch] = useState("");
-  const [formData, setFormData] = useState({
-    name: "",
-    description: "",
-    skills: [],
-    image: "",
-    creators: [user ? user.id : null],
-  });
+  const [formData, setFormData] = useState(emptyForm);
 
   /* * * * * * * * * *
    * Event Handlers  *
@@ -27,7 +29,8 @@ function NewProjectForm({ setShowForm }) {
       headers: {
         "Content-type": "application/json",
       },
-    });
+    }).then(res => res.json());
+    setFormData(emptyForm);
   }
 
   function handleChange(e) {

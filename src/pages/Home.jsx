@@ -2,8 +2,9 @@ import "../index.css";
 import { Link, NavLink, useOutletContext } from "react-router-dom";
 import Project from "../Components/Project";
 function Home() {
+  const { user, projects } = useOutletContext();
+
   let featuredProject = { name: "Loading...", description: "Loading..." };
-  const { user, setUser, creators, projects, skills } = useOutletContext();
   if (projects.length > 0) {
     featuredProject = projects[Math.floor(Math.random() * projects.length)];
   }
@@ -27,7 +28,7 @@ function Home() {
         <h1>Welcome {user ? `back, ${user.name}` : "to the AllForge!"}</h1>
         {message}
         <hr />
-        <Project project={featuredProject} skills={skills} />
+        <Project project={featuredProject} />
       </div>
     </div>
   );

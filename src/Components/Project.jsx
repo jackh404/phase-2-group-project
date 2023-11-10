@@ -40,7 +40,6 @@ function Project({ project }) {
       return creators.find(creatorObj => creatorObj.id === creator).name;
     });
   }
-  console.log(creatorList);
   return (
     <>
       <div className="projectCard">

@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Project from "../Components/Project";
-import { NavLink, useOutletContext } from "react-router-dom";
+import { useOutletContext } from "react-router-dom";
 import Search from "../Components/Search";
 import ProjectFilter from "../Components/ProjectFilter";
 import NewProjectForm from "../Components/NewProjectForm";
@@ -11,7 +11,11 @@ function Projects() {
   const [selection, setSelection] = useState("All");
   const [showForm, setShowForm] = useState(false);
   // fetch the data here
-  const { user, setUser, creators, projects, skills } = useOutletContext();
+  const { user, projects, skills } = useOutletContext();
+  console.log(projects);
+  if (!projects.length) {
+    return <img src="../src/assets/img/stefan-bonk.gif" />;
+  }
 
   // text filter handler
   function inputHandler(e) {
@@ -45,7 +49,7 @@ function Projects() {
     <>
       <div>
         <h1>List of projects</h1>
-        {!showForm ? (
+        {!showForm && user ? (
           <button onClick={() => setShowForm(true)}>Add your own</button>
         ) : (
           ""
@@ -54,17 +58,7 @@ function Projects() {
         <Search inputHandler={inputHandler} input={input} />
         <ProjectFilter />
 
-        <div id="project container div">{project}</div>
-
-        <nav>
-          <NavLink
-            to="/"
-            /* add styling to Navlink */
-            className="nav-link"
-          >
-            Home
-          </NavLink>
-        </nav>
+        <div id="projectContainer">{project}</div>
       </div>
     </>
   );
