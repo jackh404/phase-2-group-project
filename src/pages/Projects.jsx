@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Project from "../Components/Project"
-import { NavLink } from "react-router-dom";
+import { NavLink,useOutletContext } from "react-router-dom";
 import Search from "../Components/Search";
 import ProjectFilter from "../Components/ProjectFilter";
 import NewProjectForm from "../Components/NewProjectForm";
@@ -11,25 +11,12 @@ function Projects({props}){
   
 
   // states
-    const [projects,setProjects] = useState([])
     const[input,setInput] = useState("")
     const[selection,setSelection] = useState("All")
-    const [skills,setSkills]=useState([])
+    const [showForm,setShowForm] = useState(false)
   // fetch the data here
-  
-  
-  useEffect(() =>{
-      fetch(`https://ccserver-obi1.onrender.com/skills`)
-      .then(res => res.json())
-      .then(data => setSkills(data))
-  // .catch(error => console.error(error))
-    }, []);
-    useEffect(() =>{
-        fetch(`https://ccserver-obi1.onrender.com/projects`)
-        .then(res => res.json())
-        .then(data => setProjects(data))
-  // .catch(error => console.error(error))
-      }, []);
+  const [user,setUser,creators,projects,skills] = useOutletContext()
+
   // text filter handler
       function inputHandler(e){
         setInput(e.target.value)
@@ -53,11 +40,12 @@ function Projects({props}){
       
 
     return <>
+    {showForm?<NewProjectForm />:''}
     <div>
-        <h1>List of projecs</h1>
+        <h1>List of projects</h1>
         <Search inputHandler = {inputHandler} input={input}/>
         <ProjectFilter/>
-        <NewProjectForm skills={skills}/>
+        {showForm?<NewProjectForm />:''}
         
         <div id="project container div">
             {project}
