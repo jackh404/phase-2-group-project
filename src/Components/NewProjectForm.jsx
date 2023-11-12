@@ -2,6 +2,10 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm({ setShowForm }) {
+  
+  //bring in context data
+  const { user, creators, skills } = useOutletContext();
+  
   const emptyForm = {
     name: "",
     description: "",
@@ -9,10 +13,6 @@ function NewProjectForm({ setShowForm }) {
     image: "",
     creators: [user ? user.id : null],
   };
-
-  //bring in context data
-  const { user, creators, skills } = useOutletContext();
-
   //form states
   const [skillSearch, setSkillSearch] = useState("");
   const [creatorSearch, setCreatorSearch] = useState("");
@@ -167,6 +167,7 @@ function NewProjectForm({ setShowForm }) {
                 name="skillSearch"
                 onChange={e => setSkillSearch(e.target.value)}
                 value={skillSearch}
+                placeholder="search skills..."
               />
               <br />
               <select name="skillSelect" id="skillSelect">
