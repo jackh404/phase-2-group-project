@@ -6,9 +6,10 @@ import ProjectFilter from "../Components/ProjectFilter";
 import NewProjectForm from "../Components/NewProjectForm";
 
 
+
 function Projects({props}){
   // add projects that are looking for pianist or XY and all that
-  
+
 
   // states
     const [projects,setProjects] = useState([])
@@ -53,27 +54,30 @@ function Projects({props}){
       
 
     return <>
+    
+
     <div>
         <h1>List of projecs</h1>
         <Search inputHandler = {inputHandler} input={input}/>
         <ProjectFilter/>
         <NewProjectForm skills={skills}/>
+    </div>
         
-        <div id="project container div">
+    <div id="project container div">
             {project}
-        </div>
-       
-        <nav>
-        <NavLink
+    </div>
+       <img src="src/assets/img/anvil.png"></img>
+    <nav>
+      <NavLink
         to="/"
         /* add styling to Navlink */
         className="nav-link"
       >
         Home
       </NavLink>
-        </nav>
+    </nav>
 
-    </div>
+    
     </>
 }
 
