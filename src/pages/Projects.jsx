@@ -5,47 +5,42 @@ import Search from "../Components/Search";
 import ProjectFilter from "../Components/ProjectFilter";
 import NewProjectForm from "../Components/NewProjectForm";
 
-
 function Projects() {
   // states
   const [input, setInput] = useState("");
   const [selection, setSelection] = useState("All");
   const [showForm, setShowForm] = useState(false);
-  const [right,setRight] = useState(0)
-  const[left,setLeft]=useState(0)
+  const [right, setRight] = useState(0);
+  const [left, setLeft] = useState(0);
   const [isRightClicked, setRightClicked] = useState(false);
   const [xPos, setXPos] = useState(0);
 
-  let movePos = xPos
-  let minMax = right
+  let movePos = xPos;
+  let minMax = right;
   const handleRightClick = () => {
-     if(right>0){
-       minMax--
-       setRight(minMax)
-      setXPos(movePos+=400)
+    if (right > 0) {
+      minMax--;
+      setRight(minMax);
+      setXPos((movePos += 400));
       setRightClicked(true);
-      console.log(`xpos: ${minMax}`)
-     } 
+      console.log(`xpos: ${minMax}`);
+    }
   };
   const divStyle = {
-    transform: isRightClicked ? `translate(${xPos}px, 0px)` : 'none',
-    transition: 'transform 0.3s ease-in-out',
+    transform: isRightClicked ? `translate(${xPos}px, 0px)` : "none",
+    transition: "transform 0.3s ease-in-out",
   };
-  
-  
-  function clickLeft(e){
-    if(right<(project.length-2)){
-      minMax++
-     setRight(minMax)
-    setXPos(movePos-=400)
-    setRightClicked(true);
-    console.log(`xpos: ${minMax}`)
-  }
-  }
-// translating the class to move the inner div
 
-
-  
+  function clickLeft(e) {
+    if (right < project.length - 2) {
+      minMax++;
+      setRight(minMax);
+      setXPos((movePos -= 400));
+      setRightClicked(true);
+      console.log(`xpos: ${minMax}`);
+    }
+  }
+  // translating the class to move the inner div
 
   // fetch the data here
   const { user, projects, skills, setProjects } = useOutletContext();
@@ -53,17 +48,6 @@ function Projects() {
   if (!projects.length) {
     return <img src="../src/assets/img/stefan-bonk.gif" />;
   }
-function addProject(formData){
-  fetch("https://ccserver-obi1.onrender.com/projects", {
-    method: "POST",
-    body: JSON.stringify(formData),
-    headers: {
-      "Content-type": "application/json",
-    },
-  }).then(res => res.json())
-  .then((data)=>{setProjects([...projects,data])});
-}
-  
 
   // text filter handler
   function inputHandler(e) {
@@ -95,31 +79,48 @@ function addProject(formData){
 
   return (
     <>
-      <div >
+      <div>
         <h1>List of projects</h1>
         {!showForm && user ? (
-          <button id="rightButton" onClick={() => setShowForm(true)}>Add your own</button>
+          <button id="rightButton" onClick={() => setShowForm(true)}>
+            Add your own
+          </button>
         ) : (
           ""
         )}
 
-        {showForm ? <NewProjectForm addProject= {addProject} setShowForm={setShowForm} /> : ""}
+        {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
         <Search inputHandler={inputHandler} input={input} />
         <ProjectFilter />
-        
-        <div id = "uContainer">
-        <button onClick={e => {clickLeft(e);}}>right</button>
-        <div id="scrollerDiv">
-          <div id="projectContainer" className={isRightClicked ? 'rightClicked' : ''} style={divStyle} onContextMenu={handleRightClick}>
-            {project}
+
+        <div id="uContainer">
+          <button
+            onClick={e => {
+              clickLeft(e);
+            }}
+          >
+            right
+          </button>
+          <div id="scrollerDiv">
+            <div
+              id="projectContainer"
+              className={isRightClicked ? "rightClicked" : ""}
+              style={divStyle}
+              onContextMenu={handleRightClick}
+            >
+              {project}
+            </div>
           </div>
+
+          <button
+            onClick={e => {
+              handleRightClick(e);
+            }}
+          >
+            left
+          </button>
         </div>
-        
-      <button onClick={e => {handleRightClick(e)}}>left</button>
-      
       </div>
-      </div>
-      
     </>
   );
 }

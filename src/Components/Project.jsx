@@ -2,15 +2,19 @@ import { useState } from "react";
 import sound from "/audio/metalSound.mp3";
 import JSConfetti from "js-confetti";
 import { useOutletContext } from "react-router-dom";
-
+import NewProjectForm from "./NewProjectForm";
 
 function Project({ project }) {
   //const audio = new Audio("./audio.mp3");
-  const { name, description, skillsRequired,image } = project;
-  const { creators, skills } = useOutletContext();
+  const { name, description, skillsRequired, image } = project;
+  const { user, creators, skills } = useOutletContext();
   const [liked, setLiked] = useState(false);
- 
-  
+  const [showForm, setShowForm] = useState(false);
+
+  const handleEdit = () => {
+    setShowForm(true);
+  };
+  const patchEdit = project => {};
   // skillsRequired.map((index)=>{return skills[index]})
 
   //loony wizard
@@ -46,9 +50,9 @@ function Project({ project }) {
   }
   return (
     <>
-      <div className="projectCard" >
+      <div className="projectCard">
         <h2>{name}</h2>
-        <img className= "cardImg" src={`${image}`} alt="" />
+        <img className="cardImg" src={`${image}`} alt="" />
 
         <div id="cardTest">
           <h3>
@@ -68,20 +72,23 @@ function Project({ project }) {
         >
           ❤️
         </button>
+        {user && project.creators.includes(user.id) ? (
+          <button onClick={handleEdit}>Edit</button>
+        ) : (
+          ""
+        )}
+        {showForm ? (
+          <NewProjectForm
+            setShowForm={setShowForm}
+            project={project}
+            handleSubmit={patchEdit}
+          />
+        ) : (
+          ""
+        )}
       </div>
-    
-  </>
-  )
-
-
-
-
-
-    
-    
-
-    
-  
+    </>
+  );
 }
 
 export default Project;
