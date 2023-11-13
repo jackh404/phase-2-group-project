@@ -3,7 +3,7 @@ import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm({ setShowForm,addProject }) {
   //bring in context data
-  const { user, creators, skills } = useOutletContext();
+  const { user, creators, skills, setProjects, projects } = useOutletContext();
 
   const emptyForm = {
     name: "",
@@ -100,7 +100,7 @@ function NewProjectForm({ setShowForm,addProject }) {
       <span className="delete" onClick={handleDelete}>
         X
       </span>
-      &emsp;{skill}
+      &emsp;{skills[skill]}
     </div>
   ));
 
@@ -127,7 +127,7 @@ function NewProjectForm({ setShowForm,addProject }) {
           ></input>
           <button onClick={handleNewCont}>add</button>
           <br />
-          <div className = "creatorContainer">{displayCreators}</div>
+          <div className="creatorContainer">{displayCreators}</div>
           <br />
           <label>Description</label>
           <textarea

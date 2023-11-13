@@ -37,6 +37,7 @@ function App() {
             setUser: setUser,
             creators: creators,
             projects: projects,
+            setProjects: setProjects,
             skills: skills,
           }}
         />

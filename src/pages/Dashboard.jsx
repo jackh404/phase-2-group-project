@@ -9,12 +9,12 @@ function Dashboard({}) {
   const [showForm, setShowForm] = useState(false);
   // console.log(user)
   if (!user) {
-    return(
+    return (
       <>
         <h1>Please sign in to view this page.</h1>
         <LoginForm />;
-     </>
-    )
+      </>
+    );
   }
   if (projects) {
     const projectsList = projects.filter(project =>
@@ -28,8 +28,13 @@ function Dashboard({}) {
         <h1>{user.name}'s Dashboard</h1>
         <h2>
           My Projects&emsp;
-          <button style={{ fontSize: "medium" }} onClick={()=>setShowForm(true)}>Add New</button>
-          {showForm? <NewProjectForm /> : ''}
+          <button
+            style={{ fontSize: "medium" }}
+            onClick={() => setShowForm(true)}
+          >
+            Add New
+          </button>
+          {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
         </h2>
         <div id="projectContainer">{displayProjects}</div>
       </div>

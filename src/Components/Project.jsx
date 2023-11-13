@@ -24,14 +24,13 @@ function Project({ project }) {
       emojiSize: 100,
     });
   }
-  let music = new Audio(sound)
+  let music = new Audio(sound);
   function likeClick(e) {
     setLiked(!liked);
 
-     music.volume = 0.1
-     music.play()
-     fireConfetti();
-   
+    music.volume = 0.1;
+    music.play();
+    fireConfetti();
   }
   let skillsList;
   if (skillsRequired) {
@@ -60,15 +59,15 @@ function Project({ project }) {
           <h5> {skillsRequired ? skillsList.join(", ") : "Loading..."}</h5>
           <br></br>
         </div>
-          <button
-            onClick={e => {
-              likeClick(e);
-            }}
-            className={liked ? "clicked" : ""}
-            id="projectLikes"
-          >
-            ❤️
-          </button>
+        <button
+          onClick={e => {
+            likeClick(e);
+          }}
+          className={liked ? "clicked" : ""}
+          id="projectLikes"
+        >
+          ❤️
+        </button>
       </div>
     
   </>
