@@ -6,59 +6,55 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import App from "./App";
 import ProfileList from "./Components/ProfileList";
-import ProfileT from "./Components/ProfileT"
+import ProfileT from "./Components/ProfileT";
+import Profile from "./pages/Profile";
 import Dashboard from "./pages/Dashboard";
 // import Profile from "./Components/Profile";
 
 const routes = [
-    {
-        path:"/",
-        element:<App />,
-        errorElement:<ErrorPage />,
-        children: [
+  {
+    path: "/",
+    element: <App />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/creators",
+        element: <ProfileList />,
+      },
+      {
+        path: "/projects",
+        element: <Projects />,
+      },
+      {
+        path: "project/:id/",
+        element: <Project />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+      {
+        path: "/profile/:id",
+        element: <ProfileT />,
+      },
+    ],
+  },
+];
 
-            {
-                path:"/",
-                element: <Home />,
-            },
-            {
-                path:"/about",
-                element: <About />,
-            },
-            {
-                path:"/creators",
-                element: <ProfileList />,
-            },
-            {
-                path:"/projects",
-                element: <Projects />,
-            },
-            {
-                path:"project/:id/",
-                element: <Project />,
-            },
-            {
-                path:"/login",
-                element: <Login />,
-            },
-            {
-                path: "/dashboard",
-                element: <Dashboard />
-            },
-            {
-                path: '/profile/:id',
-                element: <ProfileT />,
-              },
-            {
-                // path: "/profile/:id",
-                // element: <Profile />
-            }
-            
-
-
-
-        ]
-    }
-]
-
-export default routes
+export default routes;

@@ -1,6 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-
 function NavBar({ user }) {
   if (user)
     return (
@@ -20,7 +19,7 @@ function NavBar({ user }) {
         <NavLink to="/about" className="navLink">
           About
         </NavLink>
-        <NavLink to={`/creator/${user.id}`} className="navLink rightNav">
+        <NavLink to={`/profile`} className="navLink rightNav">
           Profile
         </NavLink>
       </nav>
@@ -39,9 +38,6 @@ function NavBar({ user }) {
         </NavLink>
         <NavLink to="/login" className="navLink rightNav">
           Log In
-        </NavLink>
-        <NavLink to="/profile" className="navLink rightNav">
-          profile
         </NavLink>
       </nav>
     );
