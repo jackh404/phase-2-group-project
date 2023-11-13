@@ -67,14 +67,7 @@ function Projects() {
 
   // mapping projects to the project list
   const project = filteredProject.map(project => {
-    return (
-      <Project
-        id="projectsDiv"
-        key={project.id}
-        project={project}
-        skills={skills}
-      />
-    );
+    return <Project id="projectsDiv" key={project.id} project={project} />;
   });
 
   return (
