@@ -111,7 +111,7 @@ var flkty = new Flickity( elem, {
         <ProjectFilter />
         <br/>
         
-        
+        {/* // pplz do not say eertying is broken again  */}
         <br/>
       
       <br/>
