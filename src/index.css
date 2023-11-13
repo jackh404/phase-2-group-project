@@ -94,13 +94,35 @@ a:hover {
     rotate: 1deg;
   }
 }
+@keyframes spin{
+  from{
+    transform: rotateY(0deg);
+  }
+  to{
+    transform: rotateY(360deg);
+  }
+}
+@keyframes moveRight {
+  from{}
+  to{transform: translate(100px, 0px);}
+  
+}
+/* @keyframes moveLeft {
+  
+}  */
 
 .projectCard:hover {
-  animation-iteration-count: 1;
+  /* animation-name: spin;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  animation-duration: 2s; */
+
+  
+   animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function: ease-out;
   animation-duration: 0.2s;
-  animation-name: jump;
+  animation-name: jump; 
   border: solid 1px;
   border-radius: 20px;
 }
@@ -134,6 +156,16 @@ button.clicked {
   animation-duration: 0.5s;
   animation-name: jump;
 }
+div.rightClicked{
+  transform: translate(100px,0px);
+
+
+}
+
+
+
+
+
 
 button:hover {
   border-color: #646cff;
@@ -206,3 +238,24 @@ form {
 .creators h5 {
   margin: 5px;
 }
+
+
+/* fucking around with the flick man */
+/* cell number */
+.carousel-cell {
+  width: 72%;
+  height: 200px;
+  margin-right: 20px;
+  background: #8C8;
+  counter-increment: gallery-cell;
+  display: flex;
+    flex-direction: row;
+}
+.carousel-cell:before {
+  display: block;
+  content: counter(gallery-cell);
+  color: white;
+  display: flex;
+    flex-direction: row;
+}
+

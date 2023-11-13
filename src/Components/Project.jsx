@@ -22,11 +22,14 @@ function Project({ project }) {
       emojiSize: 100,
     });
   }
-
+  let music = new Audio(sound)
   function likeClick(e) {
     setLiked(!liked);
-    new Audio(sound).play();
-    fireConfetti();
+
+     music.volume = 0.1
+     music.play()
+     fireConfetti();
+   
   }
   let skillsList;
   if (skillsRequired) {

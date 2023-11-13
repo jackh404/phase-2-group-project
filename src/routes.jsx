@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import App from "./App";
 import ProfileList from "./Components/ProfileList";
+import ProfileT from "./Components/ProfileT"
 import Dashboard from "./pages/Dashboard";
 
 const routes = [
@@ -42,7 +43,12 @@ const routes = [
             {
                 path: "/dashboard",
                 element: <Dashboard />
-            }
+            },
+            {
+                path: '/profile/:id',
+                element: <ProfileT />,
+              }
+            
         ]
     }
 ]

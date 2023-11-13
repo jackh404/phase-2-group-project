@@ -1,5 +1,10 @@
+import { useOutletContext } from "react-router-dom";
+
+
+
 
 const Profile = ({ name, picture, bio }) => {
+  const { user, projects, skills,creators } = useOutletContext();
     return (
       <div  className="profile">
         <img src={picture} alt={name} />

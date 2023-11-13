@@ -39,6 +39,9 @@ function NavBar({ user }) {
         <NavLink to="/login" className="navLink rightNav">
           Log In
         </NavLink>
+        <NavLink to="/profile" className="navLink rightNav">
+          profile
+        </NavLink>
       </nav>
     );
 }
