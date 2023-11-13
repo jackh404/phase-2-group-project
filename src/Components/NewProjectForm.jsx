@@ -2,10 +2,9 @@ import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
 function NewProjectForm({ setShowForm }) {
-  
   //bring in context data
   const { user, creators, skills } = useOutletContext();
-  
+
   const emptyForm = {
     name: "",
     description: "",
@@ -97,8 +96,8 @@ function NewProjectForm({ setShowForm }) {
   const filteredSkills = skills.filter(skill =>
     skill.includes(skillSearch.toLowerCase())
   );
-  const skillOptions = filteredSkills.map(skill => (
-    <option key={skill} value={skill}>
+  const skillOptions = filteredSkills.map((skill, index) => (
+    <option key={skill} value={index}>
       {skill}
     </option>
   ));
@@ -137,12 +136,13 @@ function NewProjectForm({ setShowForm }) {
           <div>{displayCreators}</div>
           <br />
           <label>Description</label>
-          <input
+          <textarea
             placeholder="Description of project..."
             name="description"
             onChange={handleChange}
             value={formData.description}
-          ></input>
+            style={{ width: "300px", height: "150px" }}
+          />
           <br />
           <br />
           <label>Project image</label>
@@ -154,7 +154,11 @@ function NewProjectForm({ setShowForm }) {
             value={formData.image}
           ></input>
           {formData.image ? (
-            <img src={formData.image} alt="project image"></img>
+            <img
+              src={formData.image}
+              alt="project image"
+              style={{ maxWidth: "500px", maxHeight: "500px" }}
+            ></img>
           ) : (
             ""
           )}
