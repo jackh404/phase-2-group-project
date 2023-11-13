@@ -33,6 +33,7 @@ function App() {
         <Outlet
           context={{
             user: user,
+            setProjects: setProjects,
             setUser: setUser,
             creators: creators,
             projects: projects,

@@ -13,58 +13,57 @@ function Projects() {
   const [showForm, setShowForm] = useState(false);
   const [right,setRight] = useState(0)
   const[left,setLeft]=useState(0)
-  const[move,setMove]=useState("")
   const [isRightClicked, setRightClicked] = useState(false);
+  const [xPos, setXPos] = useState(0);
 
-  let xPos = 100
-  
+  let movePos = xPos
+  let minMax = right
   const handleRightClick = () => {
-     xPos += 100;
-    setRightClicked(true);
-    console.log(xPos)
-
+     if(right>0){
+       minMax--
+       setRight(minMax)
+      setXPos(movePos+=400)
+      setRightClicked(true);
+      console.log(`xpos: ${minMax}`)
+     } 
   };
   const divStyle = {
     transform: isRightClicked ? `translate(${xPos}px, 0px)` : 'none',
+    transition: 'transform 0.3s ease-in-out',
   };
-
   
   
-  // control the right and left click states
-// let rightOne = right
-//   function clickRight(e){
-//     if(right<projects.length){
-//       rightOne++
-//       setRight(rightOne)
-//     }
-//     if(right<projects.length && right>0){
-//       setMove("rightClicked")
-      
-//     }
-    
-//     console.log(right)
-//     console.log(`move:${move}`)
-//   }
-  
-  
-//   function clickLeft(e){
-//     if(right>0){
-//       rightOne--
-//       setRight(rightOne)
-//     }
-//     console.log(right)
-//   }
+  function clickLeft(e){
+    if(right<(project.length-2)){
+      minMax++
+     setRight(minMax)
+    setXPos(movePos-=400)
+    setRightClicked(true);
+    console.log(`xpos: ${minMax}`)
+  }
+  }
 // translating the class to move the inner div
 
 
   
 
   // fetch the data here
-  const { user, projects, skills } = useOutletContext();
+  const { user, projects, skills, setProjects } = useOutletContext();
   console.log(projects);
   if (!projects.length) {
     return <img src="../src/assets/img/stefan-bonk.gif" />;
   }
+function addProject(formData){
+  fetch("https://ccserver-obi1.onrender.com/projects", {
+    method: "POST",
+    body: JSON.stringify(formData),
+    headers: {
+      "Content-type": "application/json",
+    },
+  }).then(res => res.json())
+  .then((data)=>{setProjects([...projects,data])});
+}
+  
 
   // text filter handler
   function inputHandler(e) {
@@ -96,26 +95,29 @@ function Projects() {
 
   return (
     <>
-      <div>
+      <div >
         <h1>List of projects</h1>
         {!showForm && user ? (
           <button id="rightButton" onClick={() => setShowForm(true)}>Add your own</button>
         ) : (
           ""
         )}
-        {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
+
+        {showForm ? <NewProjectForm addProject= {addProject} setShowForm={setShowForm} /> : ""}
         <Search inputHandler={inputHandler} input={input} />
         <ProjectFilter />
-        <br/>
-        <button onClick={e => {clickLeft(e);}}>left</button>
+        
+        <div id = "uContainer">
+        <button onClick={e => {clickLeft(e);}}>right</button>
         <div id="scrollerDiv">
           <div id="projectContainer" className={isRightClicked ? 'rightClicked' : ''} style={divStyle} onContextMenu={handleRightClick}>
             {project}
           </div>
         </div>
-        <br/>
-      <button onClick={e => {handleRightClick(e)}}>right</button>
-      <br/>
+        
+      <button onClick={e => {handleRightClick(e)}}>left</button>
+      
+      </div>
       </div>
       
     </>

@@ -105,7 +105,7 @@ a:hover {
   }
 }
 @keyframes moveRight {
-  from{}
+  from{transform: translate(100px,0px);}
   to{transform: translate(100px, 0px);}
   
 }
@@ -147,6 +147,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   /* scale: 133%; */
+  margin-right:80%
 }
 button.clicked {
   border-radius: 8px;
@@ -160,7 +161,7 @@ button.clicked {
 }
 div.rightClicked{
   transform: translate(100px,0px);
-
+ 
 
 }
 
@@ -254,8 +255,10 @@ form {
 .cardImg{
   max-height: 300px;
   max-width: 345px;
+  
 }
 #scrollerDiv{
   max-width: 1200px;
   overflow: hidden;
+  
 }

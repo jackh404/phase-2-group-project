@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewProjectForm({ setShowForm }) {
+function NewProjectForm({ setShowForm,addProject }) {
   //bring in context data
   const { user, creators, skills } = useOutletContext();
 
@@ -22,13 +22,7 @@ function NewProjectForm({ setShowForm }) {
    * * * * * * * * * */
   function onSubmit(e) {
     e.preventDefault();
-    fetch("https://ccserver-obi1.onrender.com/projects", {
-      method: "POST",
-      body: JSON.stringify(formData),
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).then(res => res.json());
+    addProject(formData)
     setFormData(emptyForm);
   }
 
