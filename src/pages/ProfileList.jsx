@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import profile.img from 'https://ccserver-obi1.onrender.com/assets/img/';
 
   const ProfileList = () => {
   const [profiles, setProfiles] = useState([]);

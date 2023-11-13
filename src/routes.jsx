@@ -6,6 +6,7 @@ import Projects from "./pages/Projects";
 import Login from "./pages/Login";
 import App from "./App";
 import ProfileList from "./Components/ProfileList";
+import ProfileT from "./Components/ProfileT"
 import Dashboard from "./pages/Dashboard";
 // import Profile from "./Components/Profile";
 
@@ -45,9 +46,14 @@ const routes = [
                 element: <Dashboard />
             },
             {
+                path: '/profile/:id',
+                element: <ProfileT />,
+              },
+            {
                 // path: "/profile/:id",
                 // element: <Profile />
             }
+            
 
 
 

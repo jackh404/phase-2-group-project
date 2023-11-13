@@ -1,80 +1,124 @@
-import { useEffect, useState } from "react";
-import Project from "../Components/Project"
-import { NavLink } from "react-router-dom";
+import { useState } from "react";
+import Project from "../Components/Project";
+import { useOutletContext } from "react-router-dom";
 import Search from "../Components/Search";
 import ProjectFilter from "../Components/ProjectFilter";
 import NewProjectForm from "../Components/NewProjectForm";
 
 
-function Projects({props}){
-  // add projects that are looking for pianist or XY and all that
+function Projects() {
+  // states
+  const [input, setInput] = useState("");
+  const [selection, setSelection] = useState("All");
+  const [showForm, setShowForm] = useState(false);
+  const [right,setRight] = useState(0)
+  
+ // fk this sht is annoying and vague
+ var elem = document.querySelector('.main-carousel');
+var flkty = new Flickity( elem, {
+  // options
+  cellAlign: 'left',
+  contain: true
+});
+
+
+  // control the right and left click states
+// let rightOne = right
+
+  function clickRight(e){
+  //   if(right<3){
+  //   rightOne++
+  //   setRight(rightOne)
+  //   console.log(right)
+  // }
+  
+  }
+  function clickLeft(e){
+    // if(right>0){
+    //   rightOne--
+    //   setRight(rightOne)
+    //   console.log(right)
+    // }
+  }
+
   
 
-  // states
-    const [projects,setProjects] = useState([])
-    const[input,setInput] = useState("")
-    const[selection,setSelection] = useState("All")
-    const [skills,setSkills]=useState([])
   // fetch the data here
-  
-  
-  useEffect(() =>{
-      fetch(`https://ccserver-obi1.onrender.com/skills`)
-      .then(res => res.json())
-      .then(data => setSkills(data))
-  // .catch(error => console.error(error))
-    }, []);
-    useEffect(() =>{
-        fetch(`https://ccserver-obi1.onrender.com/projects`)
-        .then(res => res.json())
-        .then(data => setProjects(data))
-  // .catch(error => console.error(error))
-      }, []);
+  const { user, projects, skills,creators } = useOutletContext();
+  console.log(creators);
+  if (!projects.length) {
+    return <img src="../src/assets/img/stefan-bonk.gif" />;
+  }
+
   // text filter handler
-      function inputHandler(e){
-        setInput(e.target.value)
-      }
-      let filteredProject = projects
-      if(input.length !== 0){
-        filteredProject = projects.filter(project=>{
-          return project.name.toLowerCase().includes(input.toLowerCase())
-        })
-      }
+  function inputHandler(e) {
+    setInput(e.target.value);
+  }
+
+  let filteredProject = projects;
+  if (input.length !== 0) {
+    filteredProject = projects.filter(project => {
+      return project.name.toLowerCase().includes(input.toLowerCase());
+    });
+  }
+
   // select menu filter
-      function selectHandler(){
-      }
-      let filteredSelect = filteredProject
+  function selectHandler() {}
+  let filteredSelect = filteredProject;
 
   // mapping projects to the project list
-      const project = filteredProject.map(project=>{
-        return <Project  id = "projectsDiv" key = {project.id} project={project} skills = {skills} />
-      })
-      
-      
+  const project = filteredProject.map(project => {
+    return (
+      <Project
+        id="projectsDiv"
+        key={project.id}
+        project={project}
+        skills={skills}
+      />
+    );
+  });
+  
+  return (
+    <>
+      <div>
+        {/* flick test */}
+        <div>
+        {/* <!-- Flickity HTML init --> */}
+        <p><code>wrapAround: true</code></p>
+        <div class="main-carousel" >
+  <div class="carousel-cell">{project[0]}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+  <div class="carousel-cell">{project}</div>
+</div>
 
-    return <>
-    <div>
-        <h1>List of projecs</h1>
-        <Search inputHandler = {inputHandler} input={input}/>
-        <ProjectFilter/>
-        <NewProjectForm skills={skills}/>
-        
-        <div id="project container div">
-            {project}
         </div>
-       
-        <nav>
-        <NavLink
-        to="/"
-        /* add styling to Navlink */
-        className="nav-link"
-      >
-        Home
-      </NavLink>
-        </nav>
+        {/* flick test */}
 
-    </div>
+
+        <h1>List of projects</h1>
+        {!showForm && user ? (
+          <button id="rightButton" onClick={() => setShowForm(true)}>Add your own</button>
+        ) : (
+          ""
+        )}
+        {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
+        <Search inputHandler={inputHandler} input={input} />
+        <ProjectFilter />
+        <br/>
+        
+        
+        <br/>
+      
+      <br/>
+      </div>
+      
     </>
+  );
 }
 
-export default Projects
+export default Projects;
