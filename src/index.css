@@ -40,7 +40,7 @@ footer {
 }
 
 #homePage {
-  background-image: url("./src/assets/img/DwarfForge-transformed.jpeg");
+  background-image: url("/src/assets/img/DwarfForge-transformed.jpeg");
   background-size: cover;
   min-height: 100%;
   flex-grow: 1;
@@ -64,7 +64,6 @@ a:hover {
 
 #projectContainer {
   display: flex;
-  
 }
 .projectCard {
   background-image: url("src/assets/img/dwarfForge.jpeg");
@@ -83,7 +82,7 @@ a:hover {
   min-width: 398px;
   min-height: 380px;
   align-items: baseline;
-    justify-items: start;
+  justify-items: start;
 }
 
 @keyframes jump {
@@ -97,18 +96,21 @@ a:hover {
     rotate: 1deg;
   }
 }
-@keyframes spin{
-  from{
+@keyframes spin {
+  from {
     transform: rotateY(0deg);
   }
-  to{
+  to {
     transform: rotateY(360deg);
   }
 }
 @keyframes moveRight {
-  from{transform: translate(100px,0px);}
-  to{transform: translate(100px, 0px);}
-  
+  from {
+    transform: translate(100px, 0px);
+  }
+  to {
+    transform: translate(100px, 0px);
+  }
 }
 /* @keyframes moveLeft {
   
@@ -121,11 +123,11 @@ a:hover {
   animation-duration: 2s; */
 
   box-shadow: 0 0 20px #d44a4a;
-   animation-iteration-count: 1;
+  animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function: ease-out;
   animation-duration: 0.2s;
-  animation-name: jump; 
+  animation-name: jump;
   border: solid 1px;
   border-radius: 20px;
 }
@@ -148,7 +150,6 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   /* scale: 133%; */
-  
 }
 button.clicked {
   border-radius: 8px;
@@ -160,19 +161,12 @@ button.clicked {
   animation-duration: 0.5s;
   animation-name: jump;
 }
-button#projectLikes{
-  margin-right:80%
+button#projectLikes {
+  margin-right: 80%;
 }
-div.rightClicked{
-  transform: translate(100px,0px);
- 
-
+div.rightClicked {
+  transform: translate(100px, 0px);
 }
-
-
-
-
-
 
 button:hover {
   border-color: #646cff;
@@ -247,45 +241,38 @@ form {
 }
 
 /* new project form styleing */
-#newProjectForm{
+#newProjectForm {
   background-color: #646cff;
   max-width: 600px;
   transform: translate3d(503px, -14px, 0px);
 }
-.creatorContainer{
- background-color: #3e48f5;
+.creatorContainer {
+  background-color: #3e48f5;
 }
 
-.cardImg{
+.cardImg {
   max-height: 300px;
   max-width: 345px;
-  
 }
-#scrollerDiv{
+#scrollerDiv {
   max-width: 1200px;
   overflow: hidden;
-  background-color:     #2d2d30
-  
-  
+  background-color: #2d2d30;
 }
 
-#uContainer{
+#uContainer {
   display: flex;
-
 }
 
-.arrowButton{
+.arrowButton {
   max-height: 100px;
   max-width: 50px;
 }
 
-.background{
+.background {
   background-image: url("/src/assets/img/DwarfForge-transformed.jpeg");
   display: flex;
-    align-items: center;
-    flex-direction: column;
+  align-items: center;
+  flex-direction: column;
   background-size: cover;
 }
-
-
-
