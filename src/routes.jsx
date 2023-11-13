@@ -47,7 +47,7 @@ const routes = [
       },
       {
         path: "/profile",
-        element: <Profile />,
+        element: <ProfileT />,
       },
       {
         path: "/profile/:id",

@@ -19,7 +19,7 @@ function NavBar({ user }) {
         <NavLink to="/about" className="navLink">
           About
         </NavLink>
-        <NavLink to={`/profile`} className="navLink rightNav">
+        <NavLink to={`/profile/${user.id}`} className="navLink rightNav">
           Profile
         </NavLink>
       </nav>

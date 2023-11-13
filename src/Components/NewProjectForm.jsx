@@ -1,31 +1,67 @@
 import { useState } from "react";
 import { useOutletContext } from "react-router-dom";
 
-function NewProjectForm({ setShowForm,addProject }) {
+function NewProjectForm({ project, setShowForm }) {
   //bring in context data
-  const { user, creators, skills, setProjects, projects } = useOutletContext();
+  const { user, creators, skills, projects, setProjects } = useOutletContext();
 
-  const emptyForm = {
+  let initForm = {
     name: "",
     description: "",
-    skills: [],
+    skillsRequired: [],
     image: "",
     creators: [user ? user.id : null],
   };
+
+  if (project) {
+    initForm = project;
+  }
+
   //form states
   const [skillSearch, setSkillSearch] = useState("");
   const [creatorSearch, setCreatorSearch] = useState("");
-  const [formData, setFormData] = useState(emptyForm);
+  const [formData, setFormData] = useState(initForm);
 
   /* * * * * * * * * *
    * Event Handlers  *
    * * * * * * * * * */
   function onSubmit(e) {
     e.preventDefault();
-    addProject(formData)
-    setFormData(emptyForm);
+    if (project) {
+      fetch(`https://ccserver-obi1.onrender.com/projects/${project.id}`, {
+        method: "PATCH",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          const updatedProjects = projects.map(project => {
+            if (project.id === data.id) {
+              return data;
+            } else {
+              return project;
+            }
+          });
+          setProjects(updatedProjects);
+        })
+        .then(setShowForm(false));
+    } else {
+      fetch("https://ccserver-obi1.onrender.com/projects", {
+        method: "POST",
+        body: JSON.stringify(formData),
+        headers: {
+          "Content-type": "application/json",
+        },
+      })
+        .then(res => res.json())
+        .then(data => {
+          setProjects([...projects, data]);
+        })
+        .then(setShowForm(false));
+    }
   }
-
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
@@ -49,10 +85,10 @@ function NewProjectForm({ setShowForm,addProject }) {
     e.preventDefault();
     //get actual DOM element because state is slow af and onChange doesn't always work
     const skillSelect = document.getElementById("skillSelect");
-    if (!formData.skills.includes(skillSelect.value)) {
+    if (!formData.skillsRequired.includes(skillSelect.value)) {
       setFormData({
         ...formData,
-        skills: [...formData.skills, skillSelect.value],
+        skillsRequired: [...formData.skillsRequired, skillSelect.value],
       });
     }
   }
@@ -95,7 +131,7 @@ function NewProjectForm({ setShowForm,addProject }) {
       {skill}
     </option>
   ));
-  const displaySkills = formData.skills.map(skill => (
+  const displaySkills = formData.skillsRequired.map(skill => (
     <div key={skill} id={skill} className="skills">
       <span className="delete" onClick={handleDelete}>
         X
