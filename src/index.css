@@ -276,3 +276,7 @@ form {
   flex-direction: column;
   background-size: cover;
 }
+
+#shade {
+  background-color: #1a1a1aca;
+}

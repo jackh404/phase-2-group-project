@@ -18,10 +18,10 @@ function Projects() {
   let movePos = xPos;
   let minMax = right;
   const handleRightClick = () => {
-     if(right<(project.length-2)){
-       minMax++
-       setRight(minMax)
-      setXPos(movePos-=400)
+    if (right < project.length - 2) {
+      minMax++;
+      setRight(minMax);
+      setXPos((movePos -= 400));
       setRightClicked(true);
       console.log(`xpos: ${minMax}`);
     }
@@ -30,16 +30,15 @@ function Projects() {
     transform: isRightClicked ? `translate(${xPos}px, 0px)` : "none",
     transition: "transform 0.3s ease-in-out",
   };
-  
-  
-  function clickLeft(e){
-    if(right>0){
-      minMax--
-     setRight(minMax)
-    setXPos(movePos+=400)
-    setRightClicked(true);
-    console.log(`xpos: ${minMax}`)
-  }
+
+  function clickLeft(e) {
+    if (right > 0) {
+      minMax--;
+      setRight(minMax);
+      setXPos((movePos += 400));
+      setRightClicked(true);
+      console.log(`xpos: ${minMax}`);
+    }
   }
   // translating the class to move the inner div
 
@@ -73,33 +72,51 @@ function Projects() {
 
   return (
     <>
-    <div id="shade">
       <div className="background">
-        <h1>List of projects</h1>
-        {!showForm && user ? (
-          <button id="rightButton" onClick={() => setShowForm(true)}>
-            Add your own
-          </button>
-        ) : (
-          ""
-        )}
+        <div id="shade">
+          <h1>List of projects</h1>
+          {!showForm && user ? (
+            <button id="rightButton" onClick={() => setShowForm(true)}>
+              Add your own
+            </button>
+          ) : (
+            ""
+          )}
 
-        {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
-        <Search inputHandler={inputHandler} input={input} />
-        <ProjectFilter />
-        
-        <div id = "uContainer">
-        <button className="arrowButton" onClick={e => {clickLeft(e);}}>🢀</button>
-        <div id="scrollerDiv">
-          <div id="projectContainer" className={isRightClicked ? 'rightClicked' : ''} style={divStyle} onContextMenu={handleRightClick}>
-            {project}
+          {showForm ? <NewProjectForm setShowForm={setShowForm} /> : ""}
+          <Search inputHandler={inputHandler} input={input} />
+          <ProjectFilter />
+
+          <div id="uContainer">
+            <button
+              className="arrowButton"
+              onClick={e => {
+                clickLeft(e);
+              }}
+            >
+              🢀
+            </button>
+            <div id="scrollerDiv">
+              <div
+                id="projectContainer"
+                className={isRightClicked ? "rightClicked" : ""}
+                style={divStyle}
+                onContextMenu={handleRightClick}
+              >
+                {project}
+              </div>
+            </div>
+
+            <button
+              className="arrowButton"
+              onClick={e => {
+                handleRightClick(e);
+              }}
+            >
+              🢂
+            </button>
           </div>
         </div>
-        
-      <button className="arrowButton" onClick={e => {handleRightClick(e)}}>🢂</button>
-      
-      </div>
-      </div>
       </div>
     </>
   );
