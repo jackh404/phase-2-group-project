@@ -1,45 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import profile.img from 'https://ccserver-obi1.onrender.com/assets/img/';
+import React from "react";
+import { Link } from "react-router-dom";
 
-  const ProfileList = () => {
-  const [profiles, setProfiles] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // Fetch data from your JSON server
-    const dbserver = 'https://ccserver-obi1.onrender.com/';
-    fetch(`${dbserver}creators`)
-      .then((response) => response.json())
-      .then((data) => {
-        setProfiles(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error('Error fetching data:', error);
-        setLoading(false);
-      });
-  }, []);
-
+const ProfileList = ({ creators }) => {
   return (
     <div>
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        <div>
-          {profiles.map((profile) => (
-            <div className="projectCard" key={profile.id}>
-              <h2>{profile.name}</h2>
-              <img src={profile.img} alt={`${profile.name}'s profile picture`} />
-              <p>{profile.bio}</p>
-              <p>Skills: {profile.skills.join(', ')}</p>
-              <p>Projects: {profile.projects.join(', ')}</p>
-            </div>
-          ))}
+      {creators.map((profile) => (
+        <div className="projectCard" key={profile.id}>
+          <h2>{profile.name}</h2>
+          <Link to={`/profile/${profile.id}`}>
+            <img src={profile.image} alt={`${profile.name}'s profile picture`} />
+          </Link>
+          <p>{profile.bio}</p>
+          <p>{profile.skills}</p>
+          <p>{profile.projects}</p>
         </div>
-      )}
+      ))}
     </div>
   );
 };
 
 export default ProfileList;
+
 

@@ -1,12 +1,14 @@
-html{
+html {
   min-height: 100%;
 }
-body{
-  margin:0px;
-  @media only screen and (min-width: 1024px){margin-left: 8%;margin-right: 8%;}
+body {
+  margin: 0px;
+  @media only screen and (min-width: 1024px) {
+    margin-left: 8%;
+    margin-right: 8%;
+  }
 }
 :root {
-
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -21,35 +23,34 @@ body{
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-#root{
-  min-height:100vh;
+#root {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
-main{
-  flex-grow:1;
+main {
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
 }
-footer{
+footer {
   background-color: black;
-  width: 100%
+  width: 100%;
 }
 
-#homePage{
-  background-image: url('./src/assets/img/DwarfForge-transformed.jpeg');
+#homePage {
+  background-image: url("./src/assets/img/DwarfForge-transformed.jpeg");
   background-size: cover;
   min-height: 100%;
-  flex-grow:1;
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  
 }
-#homePage>div{
+#homePage > div {
   background-color: #1a1a1aca;
-  flex-grow:1;
+  flex-grow: 1;
 }
 
 a {
@@ -61,19 +62,21 @@ a:hover {
   color: #535bf2;
 }
 
-.projectCard { 
-  background-image: url('src/assets/img/dwarfForge.jpeg');
-  /* background-color: #300808; */
-  background-size: cover ;
-    max-width: min-content;
-    padding: 12px;
-    scale: 95%;
-    border-radius: 20px;
-    border: solid 1px #300808;
-    background-position: center;
-    
+#projectContainer {
+  display: flex;
 }
-#cardTest{
+.projectCard {
+  background-image: url("src/assets/img/dwarfForge.jpeg");
+  /* background-color: #300808; */
+  background-size: cover;
+  max-width: min-content;
+  padding: 12px;
+  scale: 95%;
+  border-radius: 20px;
+  border: solid 1px #300808;
+  background-position: center;
+}
+#cardTest {
   background-color: #523107;
   opacity: 90%;
   min-width: 398px;
@@ -81,22 +84,26 @@ a:hover {
 }
 
 @keyframes jump {
-  0% {rotate: 0deg;}
-  20%{rotate: -1deg;}
-  100%{rotate: 1deg;}
+  0% {
+    rotate: 0deg;
+  }
+  20% {
+    rotate: -1deg;
+  }
+  100% {
+    rotate: 1deg;
+  }
 }
 
-.projectCard:hover{
+.projectCard:hover {
   animation-iteration-count: 1;
   animation-direction: alternate;
-  animation-timing-function:ease-out;
+  animation-timing-function: ease-out;
   animation-duration: 0.2s;
-  animation-name:jump;
+  animation-name: jump;
   border: solid 1px;
   border-radius: 20px;
 }
-
-
 
 h1 {
   font-size: 3.2em;
@@ -117,22 +124,20 @@ button {
   transition: border-color 0.25s;
   /* scale: 133%; */
 }
-button.clicked{
+button.clicked {
   border-radius: 8px;
   background-color: rgb(255, 255, 255);
   border: 3px solid rgb(0, 0, 0);
   animation-iteration-count: 1;
   animation-direction: alternate;
-  animation-timing-function:ease-out;
+  animation-timing-function: ease-out;
   animation-duration: 0.5s;
-  animation-name:jump;
+  animation-name: jump;
 }
-
 
 button:hover {
   border-color: #646cff;
 }
-
 
 @media (prefers-color-scheme: light) {
   :root {
@@ -147,7 +152,6 @@ button:hover {
   }
 }
 
-
 .navLink {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -158,4 +162,47 @@ button:hover {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+}
+
+.delete {
+  background-color: rgb(112, 4, 4);
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+  cursor: pointer;
+  text-align: center;
+  width: 25px;
+  font-weight: bold;
+  font-size: medium;
+}
+.delete:hover {
+  background-color: rgb(219, 0, 0);
+  border: 3px solid rgb(0, 0, 0);
+  border-radius: 5px;
+}
+
+label {
+  margin: 20px;
+}
+
+.threeColumn {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.creators {
+  display: inline-block;
+  margin: 5px;
+  margin-left: 15px;
+  background-color: rgba(26, 26, 26, 0.359);
+  padding: 5px;
+  border-radius: 10px;
+}
+.creators h5 {
+  margin: 5px;
 }
