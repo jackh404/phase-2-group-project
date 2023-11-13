@@ -66,7 +66,7 @@ a:hover {
   display: flex;
 }
 .projectCard {
-  background-image: url("src/assets/img/dwarfForge.jpeg");
+  background-image: url("src/assets/img/dwarfForge2.jpeg");
   /* background-color: #300808; */
   background-size: cover;
   max-width: min-content;
@@ -279,4 +279,5 @@ form {
 
 #shade {
   background-color: #1a1a1aca;
+  width: 100%;
 }
