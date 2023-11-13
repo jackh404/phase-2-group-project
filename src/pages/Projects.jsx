@@ -19,10 +19,10 @@ function Projects() {
   let movePos = xPos
   let minMax = right
   const handleRightClick = () => {
-     if(right>0){
-       minMax--
+     if(right<(project.length-2)){
+       minMax++
        setRight(minMax)
-      setXPos(movePos+=400)
+      setXPos(movePos-=400)
       setRightClicked(true);
       console.log(`xpos: ${minMax}`)
      } 
@@ -34,10 +34,10 @@ function Projects() {
   
   
   function clickLeft(e){
-    if(right<(project.length-2)){
-      minMax++
+    if(right>0){
+      minMax--
      setRight(minMax)
-    setXPos(movePos-=400)
+    setXPos(movePos+=400)
     setRightClicked(true);
     console.log(`xpos: ${minMax}`)
   }
@@ -95,7 +95,8 @@ function addProject(formData){
 
   return (
     <>
-      <div >
+    <div id="shade">
+      <div className="background">
         <h1>List of projects</h1>
         {!showForm && user ? (
           <button id="rightButton" onClick={() => setShowForm(true)}>Add your own</button>
@@ -108,18 +109,18 @@ function addProject(formData){
         <ProjectFilter />
         
         <div id = "uContainer">
-        <button onClick={e => {clickLeft(e);}}>right</button>
+        <button className="arrowButton" onClick={e => {clickLeft(e);}}>🢀</button>
         <div id="scrollerDiv">
           <div id="projectContainer" className={isRightClicked ? 'rightClicked' : ''} style={divStyle} onContextMenu={handleRightClick}>
             {project}
           </div>
         </div>
         
-      <button onClick={e => {handleRightClick(e)}}>left</button>
+      <button className="arrowButton" onClick={e => {handleRightClick(e)}}>🢂</button>
       
       </div>
       </div>
-      
+      </div>
     </>
   );
 }

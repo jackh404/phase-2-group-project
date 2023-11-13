@@ -64,6 +64,7 @@ a:hover {
 
 #projectContainer {
   display: flex;
+  
 }
 .projectCard {
   background-image: url("src/assets/img/dwarfForge.jpeg");
@@ -119,7 +120,7 @@ a:hover {
   animation-iteration-count: infinite;
   animation-duration: 2s; */
 
-  
+  box-shadow: 0 0 20px #d44a4a;
    animation-iteration-count: 1;
   animation-direction: alternate;
   animation-timing-function: ease-out;
@@ -147,7 +148,7 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
   /* scale: 133%; */
-  margin-right:80%
+  
 }
 button.clicked {
   border-radius: 8px;
@@ -158,6 +159,9 @@ button.clicked {
   animation-timing-function: ease-out;
   animation-duration: 0.5s;
   animation-name: jump;
+}
+button#projectLikes{
+  margin-right:80%
 }
 div.rightClicked{
   transform: translate(100px,0px);
@@ -260,5 +264,28 @@ form {
 #scrollerDiv{
   max-width: 1200px;
   overflow: hidden;
+  background-color:     #2d2d30
+  
   
 }
+
+#uContainer{
+  display: flex;
+
+}
+
+.arrowButton{
+  max-height: 100px;
+  max-width: 50px;
+}
+
+.background{
+  background-image: url("/src/assets/img/DwarfForge-transformed.jpeg");
+  display: flex;
+    align-items: center;
+    flex-direction: column;
+  background-size: cover;
+}
+
+
+
