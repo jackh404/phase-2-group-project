@@ -52,6 +52,20 @@ footer {
   background-color: #1a1a1aca;
   flex-grow: 1;
 }
+#aboutPage {
+  background-image: url("https://th.bing.com/th/id/OIG.YHnKIrkpeBFfZ2F1dKzX?pid=ImgGn");
+  background-size: cover;
+  min-height: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  
+}
+#aboutPage > div {
+  background-color: #1a1a1aca;
+  flex-grow: 1;
+}
 
 a {
   font-weight: 500;
