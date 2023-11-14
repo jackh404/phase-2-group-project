@@ -46,7 +46,7 @@ function Projects() {
   const { user, projects, skills, setProjects } = useOutletContext();
   console.log(projects);
   if (!projects.length) {
-    return <img src="../src/assets/img/stefan-bonk.gif" />;
+    return <img src="/stefan-bonk.gif" />;
   }
 
   // text filter handler
